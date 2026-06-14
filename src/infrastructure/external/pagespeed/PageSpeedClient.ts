@@ -1,25 +1,23 @@
 import axios, { AxiosInstance } from 'axios';
 import { AppError } from '../../../app/errors/AppError';
 import { PageSpeedResponse } from '../../../shared/types/PageSpeedResponse';
+import { env } from '../../../config/env';
 
 export class PageSpeedClient {
   private readonly http: AxiosInstance;
 
   constructor() {
     this.http = axios.create({
-      baseURL: process.env.PAGESPEED_BASE_URL,
-      timeout: 15000,
+      baseURL: env.PAGESPEED_BASE_URL,
+      timeout: 60000,
     });
   }
 
   async analyze(url: string): Promise<PageSpeedResponse> {
     try {
-      const response = await this.http.get('', {
-        params: {
-          url,
-          key: process.env.PAGESPEED_API_KEY,
-        },
-      });
+      const response = await axios.get(
+        `${env.PAGESPEED_BASE_URL}?url=${encodeURIComponent(url)}&key=${env.PAGESPEED_API_KEY}&category=performance&category=accessibility&category=best-practices&category=seo`
+      );
 
       return response.data;
     } catch (error) {
