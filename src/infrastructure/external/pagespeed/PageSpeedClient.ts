@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { AppError } from '../../../app/errors/AppError';
-import { PageSpeedResponse } from './types';
+import { PageSpeedResponse } from '../../../shared/types/PageSpeedResponse';
 
 export class PageSpeedClient {
   private readonly http: AxiosInstance;

@@ -1,3 +1,15 @@
+export interface CategoryScore {
+  score: number;
+}
+
+export interface AuditMetric {
+  title: string;
+  description?: string;
+  displayValue: string;
+  score?: number;
+  numericValue?: number;
+}
+
 export interface PageSpeedResponse {
   lighthouseResult: {
     categories: {
@@ -7,22 +19,6 @@ export interface PageSpeedResponse {
       'best-practices': CategoryScore;
     };
 
-    audits: {
-      'first-contentful-paint': AuditMetric;
-      'largest-contentful-paint': AuditMetric;
-      'speed-index': AuditMetric;
-      'total-blocking-time': AuditMetric;
-      'cumulative-layout-shift': AuditMetric;
-    };
+    audits: Record<string, AuditMetric>;
   };
-}
-
-export interface CategoryScore {
-  score: number;
-}
-
-export interface AuditMetric {
-  title: string;
-  displayValue: string;
-  numericValue?: number;
 }
