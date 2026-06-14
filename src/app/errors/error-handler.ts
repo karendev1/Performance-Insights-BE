@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { AppError } from './AppError.js';
-import { logger } from '@/config/logger.js';
+import { logger } from '../../config/logger.js';
 
 export function errorHandler(error: Error, _request: Request, response: Response): Response {
   if (error instanceof AppError) {
